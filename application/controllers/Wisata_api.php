@@ -48,16 +48,17 @@ class wisata_api extends REST_Controller {
         }
 
       }elseif($this->input->post('action')=="PUT"){
-        $id_user = $this->input->post('id');
+        $id_u = $this->input->post('id');
         $data = array(
-          'nama' => $this->input->post('nama'),
-          'email' => $this->input->post('email'),
-          'username' => $this->input->post('username'),
-          'password' => $this->input->post('password')
+           'nama' => $this->input->post('nama'),
+          'lnglat' => $this->input->post('lnglat'),
+          'deskripsi' => $this->input->post('deskripsi'),
+          'foto' => $this->input->post('foto'),
+          'kategori' => $this->input->post('kategori')
         );
 
-        $this->db->where('id', $id_user);
-        $update = $this->db->update('tb_user', $data);
+        $this->db->where('id', $id_u);
+        $update = $this->db->update('tbl_wisata', $data);
         if ($update) {
           $this->response(array("data"=>array($data), "status"=>"true", 200));
         } else {
@@ -66,7 +67,7 @@ class wisata_api extends REST_Controller {
 
       }elseif($this->input->post('action')=="DELETE"){
         $id_user = $this->input->post('id');
-        $this->db->where('id', id);
+        $this->db->where('id',  $id_user);
         $delete = $this->db->delete('tbl_wisata');
         if ($delete) {
           $this->response(array('status' => 'true'), 200);
