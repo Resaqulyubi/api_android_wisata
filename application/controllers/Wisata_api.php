@@ -34,12 +34,11 @@ class wisata_api extends REST_Controller {
       if($this->input->post('action')=="POST"){
         $data = array(
           'id' => '',
-          'iduser' => $this->input->post('iduser'),
-          'idkategori' => $this->input->post('idkategori'),
-          'latlong' => $this->input->post('latlong'),
-          'nama_lokasi' => $this->input->post('nama_lokasi'),
-          'createdate' => $this->input->post('createdate'),
-          'jam' => $this->input->post('jam')
+          'nama' => $this->input->post('nama'),
+          'lnglat' => $this->input->post('lnglat'),
+          'deskripsi' => $this->input->post('deskripsi'),
+          'foto' => $this->input->post('foto'),
+          'kategori' => $this->input->post('kategori')
         );
         $insert = $this->db->insert('tbl_wisata', $data);
         if ($insert) {
@@ -67,8 +66,8 @@ class wisata_api extends REST_Controller {
 
       }elseif($this->input->post('action')=="DELETE"){
         $id_user = $this->input->post('id');
-        $this->db->where('id', $id_user);
-        $delete = $this->db->delete('tb_user');
+        $this->db->where('id', id);
+        $delete = $this->db->delete('tbl_wisata');
         if ($delete) {
           $this->response(array('status' => 'true'), 200);
         } else {

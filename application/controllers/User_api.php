@@ -24,10 +24,24 @@ class User_api extends REST_Controller {
      
       $data=$this->db->get("tbl_user")->result();
     }
+    
+           if (empty($data)) {
+$data = array(
+
+      "status"=>"false",
+      "data"=> $data);
+      
+      $this->response($data, 200);
+  }else{
     $data = array(
+  
       "status"=>"true",
       "data"=> $data);
+      
       $this->response($data, 200);
+  }
+
+    
     }
 
     // insert new data to
